@@ -6,12 +6,7 @@
 
 load_data <- function(csv_file, data_path)
 {
-  #setwd(wd_path)
-  #full_path <- cat("\"",data_path, csv_file,"\"", sep="")
   full_path <-paste(data_path, csv_file,sep="")
-  #paste(a, b, sep="")
-  #cat(full_path)
-  #train_data <- read.csv(csv_file)
   train_data <- read.csv(full_path)
 }
 
@@ -32,20 +27,7 @@ data_peek <-function(dataset)
 
 target_var_summary <-function(dataset,target_var)
 {
-#y<-dataset$count
 y<- dataset[,target_var]
-#table(count)
 target_var_summary <- cbind(freq=table(y), percentage=prop.table(table(y))*100)
-#TARGET_VAR_SUMMARY=target_var_summary
 }
-
-
-#Add data preprocessing Function
-#General Recipies,templates
-#boilerplate code
-
-#Professional R Code
-#java doc type Documentation
-#OOPS, Functional Code
-
 
