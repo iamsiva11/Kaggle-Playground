@@ -2,12 +2,6 @@
 #Getting the Problem Ready
 ###########################
 
-#Project working directory
-#/Users/iamsiva11/Development/Kaggle/Titanic
-
-#Data location
-#/Users/iamsiva11/Development/Kaggle/Titanic/data
-
 setwd("/Users/iamsiva11/Development/Kaggle/Titanic")
 source('func-Titanic.R')
 
@@ -28,7 +22,6 @@ nrow(TestData)
 CombinedData <- rbind(FullTrainData, TestData)
 #Train 1:891
 #Test 892-1309
-
 
 #Loading the required Packages
 library(caret)
