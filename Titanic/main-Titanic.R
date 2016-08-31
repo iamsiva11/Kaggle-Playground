@@ -1,7 +1,6 @@
 ###########################
 #Getting the Problem Ready
 ###########################
-
 setwd("/Users/iamsiva11/Development/Kaggle/Titanic")
 source('func-Titanic.R')
 
@@ -9,13 +8,11 @@ source('func-Titanic.R')
 #rm(list=ls())
 
 #full_train_data - train data before any splitting
-FullTrainData <- LoadData("train.csv", "/Users/iamsiva11/Development/Kaggle/titanic/data/")
-#891
+FullTrainData <- LoadData("train.csv", "/Users/iamsiva11/Development/Kaggle/titanic/data/")#891
 
 TestData<-LoadData("test.csv", "/Users/iamsiva11/Development/Kaggle/titanic/data/")
 TestData$Survived <- 0 #To maintain the homogenity with the training dataset
 #As,we will be processing the train,test data together up next
-nrow(TestData)
 
 #Combining the train and test data into a single dataframe to make the 
 #Pre processing , cleaning of data much faster in a single iteration
@@ -33,37 +30,25 @@ library(reshape2)
 library(randomForest)
 library(kernlab)
 
-#Create Validation Index
-#Create_ValidationIndex
-
 ###########################
 #Data Exploration
 ###########################
 
 ShowDescriptiveStat(FullTrainData)
-
 PeekOfData(FullTrainData)
-
 str(FullTrainData)
-
 names(FullTrainData)
-
 sapply(FullTrainData[,c(2,3,5,6)],unique)
-
 targetSummary <- SummaryOfTargetVariable(FullTrainData,'Survived')
 targetSummary
 
-# range(!is.na(FullTrainData$Age))
+#range(!is.na(FullTrainData$Age))
 length(FullTrainData$Age)
-
 length(FullTrainData$Age[!is.na(FullTrainData$Age)])
-
 range(FullTrainData$Age[!is.na(FullTrainData$Age)])
-
 min(FullTrainData$Age[!is.na(FullTrainData$Age)])
 
 #7-12 Variables
-
 sapply(FullTrainData[,c(10)],unique)
 sapply(FullTrainData[,c(10)],range)
 
@@ -84,32 +69,19 @@ NonCategoricalFeatures_nocabin<-c( 'Name',
                                    'Ticket')
 
 head(FullTrainData[,NonCategoricalFeatures])
-
 head(FullTrainData[,NonCategoricalFeatures],20)
-
 length(FullTrainData$Cabin)
-
-nrow(FullTrainData)
-
 FullTrainData$Cabin[FullTrainData$Ticket=='113803']
-
 FullTrainData$Cabin
-
 head(FullTrainData[,NonCategoricalFeatures_nocabin],20)
-
 FullTrainData[is.na(FullTrainData)]
-
 sapply(FullTrainData[,NonCategoricalFeatures_nocabin],is.na)
-
 NAValuesinAge<-FullTrainData$Age[sapply(FullTrainData$Age,is.na)]
 length(NAValuesinAge)
-
 length(FullTrainData$Embarked)
 unique(FullTrainData$Embarked)
 table(FullTrainData$Embarked)
-
 table(FullTrainData$Embarked)
-
 
 #Name - To process as text
 #Feature Engineer , Extract Features from "Name"
@@ -124,9 +96,7 @@ table(FullTrainData$Embarked)
 # "Cabin" "Name" "Ticket" 
 
 FeaturesNotinModel <- c("Cabin" ,"Name" ,"Ticket")
-
 head(FullTrainData[,FeaturesNotinModel])
-
 head(FullTrainData$Name,20)
 
 ####################
@@ -157,10 +127,7 @@ for(i in CategoricalFeatures) {
 #Categorical Variables
 #Sex, Pclass, SibSp, parch, embarked
 
-sapply(FullTrainData,class)
 #Convert the below features into factors
-
-#CombinedData
 
 #5 + 1(target) are factors now
 #Sex and embarked are already factors
@@ -182,15 +149,7 @@ CombinedData$Embarked <- factor(CombinedData$Embarked)
 CombinedData$Age[is.na(CombinedData$Age)] <- -1
 CombinedData$Fare[is.na(CombinedData$Fare)] <- median(CombinedData$Fare, na.rm=TRUE)
 
-sapply(CombinedData,class)
-
 #Feature Extraction with Name
-
-head(FullTrainData$Name)
-FullTrainData$Name[1]
-
-class(FullTrainData$Name)
-
 #Convert the Name to Character
 CombinedData$Name<-as.character(CombinedData$Name)
 CombinedData$Name[1]
@@ -224,18 +183,14 @@ class(CombinedData$Title)
 class(CombinedData$SibSp)
 class(CombinedData$Parch)
 
-
-#Just for Preprocessing
+#Just for Preprocessing Converting SibSp,Parch into integers
 CombinedData$SibSp <-as.integer(CombinedData$SibSp)
 CombinedData$Parch <-as.integer(CombinedData$Parch)
 
 head(CombinedData[,c('SibSp','Parch')])
 
+#New feature - FamilySize
 CombinedData$FamilySize <- CombinedData$SibSp + CombinedData$Parch + 1
-
-sort(unique(CombinedData$FamilySize))
-#3  4  5  6  7  8  9 10 11
-#<=5 ,6<=x<=9 , >=10
 
 table(CombinedData$FamilySize)
 
@@ -360,5 +315,3 @@ write.csv(submit_rf, file= 'output_rf_features2.csv' , row.names=FALSE)
 test_predictRF <- predict(rf_default, newdata = TestData)
 submit_rf <- data.frame(PassengerId = TestData$PassengerId, Survived=test_predictRF)
 write.csv(submit_rf, file= 'output_rf_features3.csv' , row.names=FALSE)
-
-
