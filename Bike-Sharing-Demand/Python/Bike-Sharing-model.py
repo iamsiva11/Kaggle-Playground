@@ -25,6 +25,11 @@ def reformat_datecolumn(data):
     data['weekday'] = temp.weekday
     return data
 
+def standardise_data():
+	scaler = StandardScaler()
+	X = scaler.fit_transform(X)
+	return X
+
 if __name__ =="__main__":
 	# Data Source
 	train_url = "https://raw.githubusercontent.com/jesford/bike-sharing/master/train.csv"
