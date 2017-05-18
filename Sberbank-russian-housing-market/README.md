@@ -1,6 +1,6 @@
 # Sberbank russian housing market
 
-![Competition Image](https://kaggle2.blob.core.windows.net/competitions/kaggle/6392/logos/thumb76_76.png)
+![Competition Image](http://wx1.sinaimg.cn/mw690/5396ee05ly1ff33zmo48zj21he12ghdt.jpg)
 
 > Type of problem - Regression.
 
