@@ -19,6 +19,9 @@ In this competition, Sberbank is challenging Kagglers to develop algorithms whic
 
 ## Dataset
 
+The training data is from August 2011 to June 2015, and the test set is from July 2015 to May 2016. 
+
+
 The target variable is called *price_doc* in train.csv.
 
 - *train.csv, test.csv:* information about individual transactions. The rows are indexed by the "id" field, which refers to individual transactions (particular properties might appear more than once, in separate transactions). These files also include supplementary information about the local area of each property.
