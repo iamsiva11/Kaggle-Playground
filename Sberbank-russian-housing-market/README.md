@@ -5,6 +5,7 @@
 > Type of problem - Regression.
 
 ## Why - the big picture.
+
 Although the housing market is relatively stable in Russia, the country’s volatile economy makes forecasting prices as a function of apartment characteristics a unique challenge. 
 
 Complex interactions between housing features such as number of bedrooms and location are enough to make pricing predictions complicated. 
@@ -27,7 +28,7 @@ The training data is from August 2011 to June 2015, and the test set is from Jul
 
 The target variable is called *price_doc* in train.csv.
 
-- *train.csv, test.csv:* information about individual transactions. The rows are indexed by the "id" field, which refers to individual transactions (particular properties might appear more than once, in separate transactions). These files also include supplementary information about the local area of each property.
+- *train.csv, test.csv:* information about individual transactions. The rows are indexed by the "id" field, which refers to individual transactions.
 
 - *macro.csv:* data on Russia's macroeconomy and financial sector (could be joined to the train and test sets on the "timestamp" column)
 
